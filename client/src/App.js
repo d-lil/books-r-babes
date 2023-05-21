@@ -7,7 +7,8 @@ import {
   ApolloProvider, 
   ApolloClient, 
   InMemoryCache, 
-  createHttpLink } from '@apollo/client';
+  createHttpLink
+ } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 const client = new ApolloClient({

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
 const SignupForm = () => {
   // set initial form state
@@ -48,7 +48,6 @@ const SignupForm = () => {
 
   return (
     <>
-    {data ? <p>Success!</p> : null}
       {/* This is needed for the validation functionality above */}
       <Form validated={validated} noValidate onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
