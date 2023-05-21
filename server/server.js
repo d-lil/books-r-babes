@@ -6,14 +6,14 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 // const routes = require('./routes');
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if we're in production, serve client/build as static assets
