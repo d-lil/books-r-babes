@@ -7,9 +7,8 @@ import {
   Card,
   Row
 } from 'react-bootstrap';
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_BOOKS } from '../utils/queries';
 import { SAVE_BOOK } from '../utils/mutations';
 import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
@@ -19,10 +18,10 @@ const SearchBooks = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
+ 
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-  const { loading, data } = useQuery(GET_BOOKS);
+  const [saveBook, { error }] = useMutation(SAVE_BOOK);
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
@@ -75,10 +74,12 @@ const SearchBooks = () => {
     }
 
     try {
+      
       const { data } = await saveBook({
-        variables: { ...bookToSave, token },
+        
+        variables: { bookInfo: { ...bookToSave }},
         });
-
+        console.log(...bookToSave);
       if (!data) {
         throw new Error('something went wrong!');
       }
