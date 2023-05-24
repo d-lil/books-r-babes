@@ -51,13 +51,7 @@ export const REMOVE_BOOK = gql`
         email
         savedBooks {
             bookId
-            authors
-            description
-            title
-            image
-            link
         }
         }
     }
 `;
-

@@ -47,13 +47,14 @@ const resolvers = {
                 return updatedUser;
         },
         // remove a book from `savedBooks`
-        removeBook: async (parent, { user }, context) => {
+        removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
-                return User.findOneAndUpdate(
-                    { _id: user._id },
-                    { $pull: { savedBooks: { bookId: params.bookId } } },
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedBooks: { bookId: bookId } } },
                     { new: true }
                     );
+                return updatedUser;
                 }
             throw new AuthenticationError('You need to be logged in!');
         },
