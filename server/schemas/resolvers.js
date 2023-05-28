@@ -42,7 +42,7 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedBooks: bookInfo } },
-                    { new: true, runValidators: true }
+                    { new: true }
                 );
                 return updatedUser;
         },
